@@ -8,6 +8,7 @@
 
 # Deliverable 1 (Tuesday)
 
+- Clone the repo
 - Create the database (just copy and paste the SQL script found in this repo unless you REALLY want to write it yourself)
 - Implement the "insert book" functionality
 - Implement the "get book by id" functionality
