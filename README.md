@@ -24,7 +24,9 @@
 
 # Deliverable 2 (Wednesday)
 
--TBD
+- Refactor the Repo (DAO) layer! Remove anything related to JDBC and replace it with Spring Data JPA. So your Repo (DAO) layer should just be an interface that extends JpaRepository. This will also require you to change the methods being called in the controller layer.
+- Add a new method in the BookController that allows you to update the isStocked field from true to false or vice versa. 
+- Add a new method in the BookController that allows you to delete a book by Id.
 
 # Deliverable 2 (Thursday)
 
