@@ -38,20 +38,45 @@ public class BookController {
 
     @PostMapping
     public ResponseEntity<Book> insertNewBook(@RequestBody Book book){
-        return null;
+
+        Book b = br.insertBook(book);
+
+        if(b!=null){
+            return ResponseEntity.accepted().body(b);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 
-    //these two methods have an issue with each other that won't let you compile-----
-    //you have to find it :)
+    //fixed the compilation error by making the paths more unique
+    //before there were essentially two get mappings with /id
+    //so the destination of a GET request ending in an int would be ambiguous
 
     @GetMapping(value="/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable int id) {
-        return null;
+
+        Book b = br.getBookById(id);
+
+        if(b!=null){
+            return ResponseEntity.accepted().body(b);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 
-    @GetMapping(value="/{id}")
+    @GetMapping(value="author/{id}")
     public ResponseEntity<List<Book>> getBooksByAuthorId(@PathVariable int id) {
-        return null;
+
+        List<Book> books = br.getBooksByAuthorId(id);
+
+        if(books != null) {
+            return ResponseEntity.ok().body(books);
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
+
     }
 
 }
