@@ -8,7 +8,7 @@
 
 # Deliverable 1 (Tuesday)
 
-- Clone the repo
+- Clone the repo (This is a gradle project - you'll want to do a gradle refresh when you clone so the dependencies register)
 - Create the database (just copy and paste the SQL script found in this repo unless you REALLY want to write it yourself)
 - Implement the "insert book" functionality
 - Implement the "get book by id" functionality
