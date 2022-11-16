@@ -21,7 +21,7 @@ public class Book {
     private boolean isStocked;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name = "author_id_fk")
+    @JoinColumn (name = "author_id_fk")
     public Author authorFk;
 
 
