@@ -7,7 +7,7 @@ CREATE TABLE authors (
 CREATE TABLE books (
 	book_id serial PRIMARY KEY,
 	book_title TEXT,
-	in_stock boolean,
+	is_stocked boolean,
 	author_id_fk int REFERENCES authors(author_id)
 );
 
