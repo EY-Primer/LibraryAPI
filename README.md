@@ -30,7 +30,11 @@
 
 # Deliverable 3 (Thursday)
 
--TBD
+- Create a front end with your front end framework of choice! (As long as it's angular or react)
+- You only have to create front end functionality for get all books, insert book, and one endpoint of your choice.
+- Each functionality should reside within their own component (so you'll have to work with routing)
+- If you want to do more functionalities feel free, but only 3 are required :)
+- No major visual requirements, as long as everything is readable and intuitive.
 
 # Deliverable 4 (Friday)
 
