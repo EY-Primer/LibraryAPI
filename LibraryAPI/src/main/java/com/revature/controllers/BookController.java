@@ -2,6 +2,7 @@ package com.revature.controllers;
 
 import com.revature.models.Book;
 import com.revature.repos.BookRepo;
+import com.revature.repos.BookRepoSpring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,18 +17,20 @@ import java.util.List;
 public class BookController {
 
     private BookRepo br;
+    private BookRepoSpring brs;
 
     @Autowired
-    public BookController(BookRepo br){
+    public BookController(BookRepo br, BookRepoSpring brs){
         super();
         this.br = br;
+        this.brs = brs;
     }
 
     //TODO: leave this one implemented for reference?
     @GetMapping
     public ResponseEntity<List<Book>> getAllBooks() {
 
-        List<Book> books = br.getAllBooks();
+        List<Book> books = brs.findAll(); //this is now using a method from JpaRepository (Spring Data)
 
         if(books != null){
             return ResponseEntity.ok().body(books);

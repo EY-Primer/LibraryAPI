@@ -14,14 +14,14 @@ public class Book {
     @Column
     private int bookId;
 
-    @Column
+    @Column (name = "book_title")
     private String title;
 
     @Column
     private boolean isStocked;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "author_id_fk")
     public Author authorFk;
 
 
