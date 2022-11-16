@@ -28,10 +28,10 @@
 - Add a new method in the BookController that allows you to update the isStocked field from true to false or vice versa. 
 - Add a new method in the BookController that allows you to delete a book by Id.
 
-# Deliverable 2 (Thursday)
+# Deliverable 3 (Thursday)
 
 -TBD
 
-# Deliverable 2 (Friday)
+# Deliverable 4 (Friday)
 
 -TBD
