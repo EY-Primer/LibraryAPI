@@ -3,6 +3,7 @@ package com.revature.controllers;
 import com.revature.models.Book;
 import com.revature.repos.BookRepo;
 import com.revature.repos.BookRepoSpring;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,11 @@ import java.util.List;
 @CrossOrigin //This lets us take in HTTP requests from other origins (you may need to configure this later)
 public class BookController {
 
-    private BookRepo br;
     private BookRepoSpring brs;
 
     @Autowired
-    public BookController(BookRepo br, BookRepoSpring brs){
+    public BookController(BookRepoSpring brs){
         super();
-        this.br = br;
         this.brs = brs;
     }
 
@@ -42,7 +41,7 @@ public class BookController {
     @PostMapping
     public ResponseEntity<Book> insertNewBook(@RequestBody Book book){
 
-        Book b = br.insertBook(book);
+        Book b = brs.save(book);
 
         if(b!=null){
             return ResponseEntity.accepted().body(b);
@@ -59,7 +58,8 @@ public class BookController {
     @GetMapping(value="/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable int id) {
 
-        Book b = br.getBookById(id);
+        //findById from JpaRepository returns an optional! So we must call .get() to get the data
+        Book b = brs.findById(id).get();
 
         if(b!=null){
             return ResponseEntity.accepted().body(b);
@@ -72,7 +72,7 @@ public class BookController {
     @GetMapping(value="author/{id}")
     public ResponseEntity<List<Book>> getBooksByAuthorId(@PathVariable int id) {
 
-        List<Book> books = br.getBooksByAuthorId(id);
+        List<Book> books = brs.findBookByAuthorFk(id);
 
         if(books != null) {
             return ResponseEntity.ok().body(books);
@@ -80,6 +80,35 @@ public class BookController {
             return ResponseEntity.badRequest().build();
         }
 
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Book> toggleIsStocked(@PathVariable int id){
+
+        Book book = brs.findById(id).get();
+
+        boolean newStatus = !book.getIsStocked();
+
+        //set isStocked to the opposite of its current value
+        book.setIsStocked(newStatus);
+
+        brs.save(book);
+
+        return ResponseEntity.accepted().body(book);
+
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteBook(@PathVariable int id){
+
+        Book bookToDelete = brs.findById(id).get();
+
+        if(bookToDelete != null) {
+            brs.delete(bookToDelete);
+            return ResponseEntity.accepted().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 }

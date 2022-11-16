@@ -20,7 +20,8 @@ public class Book {
     @Column
     private boolean isStocked;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    //had to change CascadeType to MERGE in order for insert to work in Spring
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn (name = "author_id_fk")
     public Author authorFk;
 
