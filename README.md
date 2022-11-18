@@ -38,4 +38,5 @@
 
 # Deliverable 4 (Friday)
 
--TBD
+- The library owners decided they want to track Book Genres as well. Add a new column to the Database to track book genres. I recommend doing this in the Book class's fields as opposed to using ALTER statements etc. Feel free to manually insert genre values for existing books if you don't want to leave it null.
+- Relax :) or keep implementing your front ends if you'd like the practice.
